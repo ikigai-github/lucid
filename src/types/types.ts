@@ -1,8 +1,8 @@
 import Core from 'core/types';
 import { Construct } from 'utils';
-import { Blockfrost } from '../provider';
+import { Blockfrost, Ogmios } from '../provider';
 
-export type Provider = Blockfrost; // more providers can be added here
+export type Provider = Blockfrost | Ogmios; // more providers can be added here
 
 export type ProtocolParameters = {
   minFeeA: number;
