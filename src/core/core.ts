@@ -22,7 +22,7 @@ const importForEnvironment = async (): Promise<typeof Core | null> => {
       return (await import(
         /* webpackIgnore: true */
         "./wasm_modules/cardano-multiplatform-lib-nodejs/cardano_multiplatform_lib.js"
-      )) as typeof Core;
+      )) as unknown as typeof Core;
     }
 
     const pkg = await import(
