@@ -11,13 +11,13 @@ import {
     UTxO,
   } from '../types/mod.ts';
 
-import Core from 'core/types'
-import { createInteractionContext, createStateQueryClient, createTxSubmissionClient, InteractionContext, isAlonzoProtocolParameters, isShelleyProtocolParameters } from '@cardano-ogmios/client';
-import { Point, ProtocolParametersAlonzo, ProtocolParametersShelley, TxIn, TxOut, Utxo } from '@cardano-ogmios/schema';
+import { Core } from '../core/mod.ts'
+import { createInteractionContext, createStateQueryClient, createTxSubmissionClient, InteractionContext, isAlonzoProtocolParameters, isShelleyProtocolParameters } from 'https://jspm.dev/@cardano-ogmios/client?dts';
+import { Point, ProtocolParametersAlonzo, ProtocolParametersShelley, TxIn, TxOut, Utxo } from 'https://jspm.dev/@cardano-ogmios/schema?dts';
 import { datumJsonToCbor } from './blockfrost.ts';
 
 const context : InteractionContext = await createInteractionContext(
-    err => console.error(err),
+    (err: Error) => console.error(err),
     () => console.log("Connection closed.")
 )
 
@@ -66,7 +66,7 @@ export class Ogmios implements ProviderSchema {
 
 
     async getCurrentSlot(): Promise<Slot> {
-        const result = await stateQueryClient.ledgerTip().then((rslt) => rslt as Point)
+        const result = await stateQueryClient.ledgerTip().then((rslt: Point) => rslt)
 
         return result.slot;
     }

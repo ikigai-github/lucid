@@ -1,8 +1,8 @@
 import { Core } from "../core/mod.ts";
 import { Construct } from "../utils/mod.ts";
-import { Blockfrost } from "../provider/mod.ts";
+import { Blockfrost, Ogmios } from "../provider/mod.ts";
 
-export type Provider = Blockfrost; // more providers can be added here
+export type Provider = Blockfrost | Ogmios; // more providers can be added here
 
 export type ProtocolParameters = {
   minFeeA: number;
