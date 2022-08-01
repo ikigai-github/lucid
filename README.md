@@ -26,6 +26,17 @@ $-->
 
 </p>
 
+### Current Problem:
+deno.land std.node module imports - 
+```
+To load an ES module, set "type": "module" in the package.json or use the .mjs extension.
+error: Uncaught (in promise) SyntaxError: Cannot use import statement outside a module.
+```
+
+Using "type: module" in package.json creates new error. 
+
+Documentation also says types do not work.
+
 ### Get started
 
 #### NPM

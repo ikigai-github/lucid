@@ -11,9 +11,14 @@ import {
     UTxO,
   } from '../types/mod.ts';
 
-import { Core } from '../core/mod.ts'
-import { createInteractionContext, createStateQueryClient, createTxSubmissionClient, InteractionContext, isAlonzoProtocolParameters, isShelleyProtocolParameters } from 'https://jspm.dev/@cardano-ogmios/client?dts';
-import { Point, ProtocolParametersAlonzo, ProtocolParametersShelley, TxIn, TxOut, Utxo } from 'https://jspm.dev/@cardano-ogmios/schema?dts';
+import { Core } from '../core/mod.ts';
+import { createRequire } from "https://deno.land/std/node/module.ts";
+
+const require = createRequire(import.meta.url);
+
+import { createStateQueryClient, createTxSubmissionClient, createInteractionContext, InteractionContext, isAlonzoProtocolParameters, isShelleyProtocolParameters} from "@cardano-ogmios/client";
+import { Point, ProtocolParametersAlonzo, ProtocolParametersShelley, TxIn, TxOut, Utxo } from "@cardano-ogmios/schema";
+
 import { datumJsonToCbor } from './blockfrost.ts';
 
 const context : InteractionContext = await createInteractionContext(
