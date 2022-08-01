@@ -12,11 +12,11 @@ import {
   } from '../types/mod.ts';
 
 import { Core } from '../core/mod.ts'
-import { createInteractionContext, createStateQueryClient, createTxSubmissionClient, InteractionContext, isAlonzoProtocolParameters, isShelleyProtocolParameters } from 'https://jspm.dev/@cardano-ogmios/client?dts';
-import { Point, ProtocolParametersAlonzo, ProtocolParametersShelley, TxIn, TxOut, Utxo } from 'https://jspm.dev/@cardano-ogmios/schema?dts';
+import { createInteractionContext, createStateQueryClient, createTxSubmissionClient, isAlonzoProtocolParameters, isShelleyProtocolParameters } from 'https://jspm.dev/@cardano-ogmios/client?dts';
+import { Point, ProtocolParametersAlonzo, ProtocolParametersShelley, TxIn, TxOut, Utxo } from 'https://unpkg.com/@cardano-ogmios/schema@5.5.2/dist/index.d.ts';
 import { datumJsonToCbor } from './blockfrost.ts';
 
-const context : InteractionContext = await createInteractionContext(
+const context = await createInteractionContext(
     (err: Error) => console.error(err),
     () => console.log("Connection closed.")
 )
@@ -60,7 +60,9 @@ export class Ogmios implements ProviderSchema {
             priceStep: isShelleyProtocolParameters(recastResult) ?
             0 :
             parseFloat((result as ProtocolParametersAlonzo).prices?.steps ?? "0"),
-            coinsPerUtxoWord: BigInt(isAlonzoProtocolParameters(recastResult) ? (result as ProtocolParametersAlonzo).coinsPerUtxoWord ?? 0 : 0)
+            coinsPerUtxoByte: BigInt(isAlonzoProtocolParameters(recastResult) ? (result as ProtocolParametersAlonzo).coinsPerUtxoWord ?? 0 / 2 : 0),
+            collateralPercentage: result.collateralPercentage, 
+            maxCollateralInputs: result.maxCollateralInputs
           };
     }
 
