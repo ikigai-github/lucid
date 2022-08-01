@@ -11,12 +11,22 @@ import {
     UTxO,
   } from '../types/mod.ts';
 
-import { Core } from '../core/mod.ts'
-import { createInteractionContext, createStateQueryClient, createTxSubmissionClient, InteractionContext, isAlonzoProtocolParameters, isShelleyProtocolParameters } from 'https://jspm.dev/@cardano-ogmios/client?dts';
-import { Point, ProtocolParametersAlonzo, ProtocolParametersShelley, TxIn, TxOut, Utxo } from 'https://jspm.dev/@cardano-ogmios/schema?dts';
+import { Core } from '../core/mod.ts';
+
+// @deno-types='https://unpkg.com/@cardano-ogmios/client@5.5.2/dist/index.d.ts'
+import { createStateQueryClient, createTxSubmissionClient} from 'https://unpkg.com/@cardano-ogmios/client@5.5.2/dist/index.js';
+
+// @deno-types='https://unpkg.com/@cardano-ogmios/client@5.5.2/dist/Connection.d.ts'
+import { createInteractionContext } from 'https://unpkg.com/@cardano-ogmios/client@5.5.2/dist/Connection.js';
+
+// @deno-types='https://unpkg.com/@cardano-ogmios/client@5.5.2/dist/util.d.ts'
+import { isAlonzoProtocolParameters, isShelleyProtocolParameters } from 'https://unpkg.com/@cardano-ogmios/client@5.5.2/dist/util.js';
+
+import { Point, ProtocolParametersAlonzo, ProtocolParametersShelley, TxIn, TxOut, Utxo } from 'https://unpkg.com/@cardano-ogmios/schema@5.5.2/dist/index.d.ts';
+
 import { datumJsonToCbor } from './blockfrost.ts';
 
-const context : InteractionContext = await createInteractionContext(
+const context = await createInteractionContext(
     (err: Error) => console.error(err),
     () => console.log("Connection closed.")
 )

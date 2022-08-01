@@ -26,6 +26,9 @@ $-->
 
 </p>
 
+### Current Problem
+unpkg - supports types, but local path imports aren't resolving at the cdn level (the problem appears to be with the __exportstar() function unpkg uses), so every file would need to be referenced locally, at minimum
+
 ### Get started
 
 #### NPM
